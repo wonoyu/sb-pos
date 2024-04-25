@@ -17,5 +17,5 @@ func main() {
 	database.ConnectDb()
 	router := router.InitRouter()
 
-	router.Run("localhost:8080")
+	router.Run()
 }

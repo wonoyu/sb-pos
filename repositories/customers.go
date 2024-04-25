@@ -43,7 +43,7 @@ func GetCustomerByUserId(db *sql.DB, userId int) (result models.Customer, err er
 }
 
 func UpdateBalance(db *sql.DB, customer models.TopupBalance) (err error) {
-	sql := "UPDATE customers SET balance=balance + $1, updated_at=$2" +
+	sql := "UPDATE customers SET balance=balance + $1, updated_at=$2 " +
 		"WHERE id=$3 Returning id"
 
 	balance := customer.Balance

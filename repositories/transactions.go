@@ -38,6 +38,13 @@ func GetSalesTransactions(db *sql.DB) (results []models.SalesTransaction, err er
 
 		transaction.Products = products
 
+		var totalEarnings int64
+		for _, product := range products {
+			totalEarnings += (int64(product.ProductQuantity) * int64(product.ProductPrice))
+		}
+
+		transaction.TotalEarnings = totalEarnings
+
 		results = append(results, transaction)
 	}
 
@@ -75,6 +82,13 @@ func GetSalesTransactionsById(db *sql.DB, transactionId int) (result models.Sale
 		}
 
 		transaction.Products = products
+
+		var totalEarnings int64
+		for _, product := range products {
+			totalEarnings += (int64(product.ProductQuantity) * int64(product.ProductPrice))
+		}
+
+		transaction.TotalEarnings = totalEarnings
 
 		result = transaction
 	} else {
